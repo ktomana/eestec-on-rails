@@ -7,10 +7,17 @@ class SubmissionsController < ApplicationController
     @submissions = Submission.all
   end
 
-    def accept
-        #zaakceptuj zgłoszenie
-        redirect_to :submissions
-    end
+  def accept
+    #zaakceptuj zgłoszenie
+    id = params[:id]
+    puts "\n\n\nMoje id: #{id}\n\n\n"
+    
+    submission = Submission.find(id)
+    submission.accepted = true
+    submission.save
+      
+    redirect_to :submissions
+  end
     
   # GET /submissions/1
   # GET /submissions/1.json
